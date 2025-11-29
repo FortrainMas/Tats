@@ -1,0 +1,23 @@
+[project]
+name = "tatary"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Ivan Shebanov", email = "i.shebanov@g.nsu.ru"},
+]
+dependencies = ["jupyter>=1.1.1", "langgraph>=1.0.4", "langchain>=1.1.0", "google-genai>=1.52.0", "langchain-google-genai>=3.2.0", "dotenv>=0.9.9", "pydantic>=2.12.5", "pandas>=2.3.3", "numpy>=2.3.5"]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+submit.cmd = "python src/tatary/submission.py"
+submit.env = {PYTHONPATH = "./src"}
+
+check.cmd = "python src/tatary/main.py"
+check.env = {PYTHONPATH = "./src"}
+
