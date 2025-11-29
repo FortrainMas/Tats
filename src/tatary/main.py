@@ -1,23 +1,20 @@
-from tatary.solutions import BaselineSolution
-from dotenv import load_dotenv
+from transformers import AutoModelForSeq2SeqLM, MT5Tokenizer
+from transformers import BitsAndBytesConfig
 
-load_dotenv()
+from transformers import AutoTokenizer
 
-async def main(text: str):
-    solution = BaselineSolution()
-    result = await solution.abatch([text, text])
-    print(result)
+model_name = "textdetox/mt5-xl-detox-baseline"
 
-BAD_SHIT = '''Син нинди тинтәк кеше!	
-Утырасың да күңел ачасың, ахмак!!!!! 
-Андый хайваннарны кабер генә төзәтә!
-'''
+quant_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+)
 
+tokenizer = MT5Tokenizer.from_pretrained("google/mt5-xl")
 
-
-
-import asyncio
-
-
-if __name__ == "__main__":
-    asyncio.run(main(BAD_SHIT))
+model = AutoModelForSeq2SeqLM.from_pretrained(
+    model_name,
+    quantization_config=quant_config,
+    device_map="auto"
+)

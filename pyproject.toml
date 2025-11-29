@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Ivan Shebanov", email = "i.shebanov@g.nsu.ru"},
 ]
-dependencies = ["jupyter>=1.1.1", "langgraph>=1.0.4", "langchain>=1.1.0", "google-genai>=1.52.0", "langchain-google-genai>=3.2.0", "dotenv>=0.9.9", "pydantic>=2.12.5", "pandas>=2.3.3", "numpy>=2.3.5"]
+dependencies = ["jupyter>=1.1.1", "langgraph>=1.0.4", "langchain>=1.1.0", "google-genai>=1.52.0", "langchain-google-genai>=3.2.0", "dotenv>=0.9.9", "pydantic>=2.12.5", "pandas>=2.3.3", "numpy>=2.3.5", "transformers>=4.57.3", "datasets>=4.4.1", "rapidfuzz>=3.14.3", "stanza>=1.11.0"]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -21,3 +21,6 @@ submit.env = {PYTHONPATH = "./src"}
 check.cmd = "python src/tatary/main.py"
 check.env = {PYTHONPATH = "./src"}
 
+jsonl.cmd = "python src/tatary/jsonl.py"
+
+matuki = "python src/tatary/remove_matuki.py"
